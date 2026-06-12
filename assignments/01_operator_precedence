@@ -1,0 +1,98 @@
+"""
+Day 1 Assignment – Operator Precedence & Associativity
+======================================================
+Task: Study Python's operator precedence and associativity rules,
+then write a program that demonstrates them with worked examples
+and explanatory comments.
+
+Program requirements:
+1. Show that * and / are evaluated before + and -
+2. Demonstrate ** is right-associative and binds tighter than unary minus
+3. Show left-to-right associativity for same-precedence operators
+4. Mix arithmetic, comparison, and logical operators
+5. Add a comment beside each print() with expected result and reason
+"""
+# SECTION 1: * and / before + and -, and parentheses override
+
+print("\nSECTION 1: Multiplication/Division before Addition/Subtraction\n")
+
+result1 = 2 + 3 * 4
+print(f"2 + 3 * 4      = {result1}")   # Expected: 14  | * runs before +, so 3*4=12 first, then 2+12
+ 
+result2 = 10 - 8 / 2
+print(f"10 - 8 / 2     = {result2}")   # Expected: 6.0 | / runs before -, so 8/2=4 first, then 10-4
+ 
+result3 = (2 + 3) * 4
+print(f"(2 + 3) * 4    = {result3}")   # Expected: 20  | Parentheses force + first, so 5*4=20
+ 
+result4 = (10 - 8) / 2
+print(f"(10 - 8) / 2   = {result4}")   # Expected: 1.0 | Parentheses force - first, so 2/2=1.0
+
+# SECTION 2: ** is right-associative and binds tighter than unary minus
+
+print("\nSECTION 2: Exponentiation – Right-Associativity & Unary Minus\n")
+
+result5 = 2 ** 3 ** 2
+print(f"2 ** 3 ** 2    = {result5}")   # Expected: 512 | Right-to-left: 3**2=9 first, then 2**9=512
+ 
+result6 = (2 ** 3) ** 2
+print(f"(2 ** 3) ** 2  = {result6}")   # Expected: 64  | Parentheses force left-to-right: 2**3=8, then 8**2=64
+ 
+result7 = -3 ** 2
+print(f"-3 ** 2        = {result7}")   # Expected: -9  | ** binds tighter than unary -, so -(3**2)=-9
+ 
+result8 = (-3) ** 2
+print(f"(-3) ** 2      = {result8}")   # Expected: 9   | Parentheses apply minus first, so (-3)**2=9
+
+# SECTION 3: Left-to-right associativity for same-precedence operators
+
+print("\nSECTION 3: Left-to-Right Associativity (Same Precedence)\n")
+
+result9 = 100 / 5 * 2
+print(f"100 / 5 * 2    = {result9}")   # Expected: 40.0 | Left-to-right: 100/5=20 first, then 20*2=40
+ 
+result10 = 100 / (5 * 2)
+print(f"100 / (5 * 2)  = {result10}")  # Expected: 10.0 | Parentheses change order: 5*2=10, then 100/10=10
+ 
+result11 = 10 - 5 - 2
+print(f"10 - 5 - 2     = {result11}")  # Expected: 3    | Left-to-right: 10-5=5 first, then 5-2=3
+ 
+result12 = 10 - (5 - 2)
+print(f"10 - (5 - 2)   = {result12}")  # Expected: 7    | Parentheses change order: 5-2=3, then 10-3=7
+ 
+
+# SECTION 4: Mixing arithmetic, comparison, and logical operators
+
+print("\nSECTION 4: Arithmetic → Comparison → not → and → or\n")
+
+# Precedence order (high to low): arithmetic → comparison → not → and → or
+
+result13 = 5 + 3 > 2 * 4
+print(f"5 + 3 > 2 * 4           = {result13}")  # Expected: False | Arithmetic first: 8 > 8 → False
+ 
+result14 = not 5 + 3 > 2 * 3
+print(f"not 5 + 3 > 2 * 3       = {result14}")  # Expected: False | Arithmetic: 8>6 → True, then not True → False
+ 
+result15 = 10 > 5 and 3 + 2 == 5
+print(f"10 > 5 and 3 + 2 == 5   = {result15}")  # Expected: True  | Arithmetic first, then comparisons, then and
+ 
+result16 = 10 > 5 and 2 + 2 == 5
+print(f"10 > 5 and 2 + 2 == 5   = {result16}")  # Expected: False | 10>5 is True but 4==5 is False → and gives False
+ 
+result17 = 10 > 20 or 3 * 3 == 9
+print(f"10 > 20 or 3 * 3 == 9   = {result17}")  # Expected: True  | 10>20 is False, but 9==9 is True → or gives True
+ 
+result18 = not 10 > 5 or 2 + 2 == 4
+print(f"not 10>5 or 2+2==4      = {result18}")  # Expected: True  | not(True)=False, 4==4=True → False or True → True
+ 
+
+print("\nSummary: Python Precedence (High → Low)\n")
+print("  1. ()          Parentheses (highest)")
+print("  2. **          Exponentiation (right-associative)")
+print("  3. +x, -x      Unary plus / minus")
+print("  4. *, /, //, % Multiplication, Division")
+print("  5. +, -        Addition, Subtraction")
+print("  6. Comparisons ==, !=, <, >, <=, >=")
+print("  7. not         Logical NOT")
+print("  8. and         Logical AND")
+print("  9. or          Logical OR  (lowest)")
