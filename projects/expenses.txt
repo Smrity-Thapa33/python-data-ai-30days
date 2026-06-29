@@ -1,0 +1,8 @@
+Food,150
+Transport,60
+Food,200
+Entertainment,120
+Utilities,300
+Transport,45
+Food,85
+Food,85
